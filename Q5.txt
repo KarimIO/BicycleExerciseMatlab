@@ -1,0 +1,3 @@
+Evaluating cubic spline gives: 
+    0.3839
+
