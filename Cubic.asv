@@ -1,5 +1,12 @@
 function [a,b,c,d] = Cubic(X, F)
+%CUBIC Summary of this function goes here
+%   Detailed explanation goes here
+    
     n = size(X, 2);
+    A = zeros(n, n);
+    B = zeros(n, 1);
+    A(1,1) = 1;
+    A(n,n) = 1;
     
     e = zeros(n, 1);
     f = zeros(n, 1);
@@ -16,12 +23,16 @@ function [a,b,c,d] = Cubic(X, F)
     end
     
     for i = 2:n-1
+        A(i,i-1) = h(i-1);
+        A(i, i ) = 2 * (h(i - 1) + h(i));
+        A(i,i+1) = h(i);
+        B(i) = 3 * (w(i+1, i) - w(i, i-1));
+        
         e(i) = h(i-1);
         f(i) = 2 * (h(i - 1) + h(i));
         g(i) = h(i);
         r(i) = 3 * (w(i+1, i) - w(i, i-1));
     end
-    
     c = TDMA(e, f, g, r);
     
     a = F;

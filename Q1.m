@@ -1,3 +1,5 @@
+diary Q1.txt
+
 imax = 100;
 es = 0.001;
 v0 = 0;
@@ -14,8 +16,9 @@ row = 1.225; % kg/m3 at sea level and 15 degrees C
 ApCd= 0.36;
 k = 0.5 * row * ApCd;
 
-%v = linspace(1,10,50);
 f = @(v)(-k*v.^3-v*Cr*ct- v*m*g*st+Pavg);
 fd = @(v) (-3*v*v*k - Cr*ct - m*g*st);
 
 [out, iter, ea] = NewtonRaphson(f, fd, v0, es, imax)
+
+diary off
